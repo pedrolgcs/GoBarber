@@ -23,13 +23,13 @@ class AuthenticateUserService {
     /* Find user by email */
     const user = await usersRepository.findOne({ where: { email } });
     if (!user) {
-      throw Error('Incorrect email/password combination');
+      throw new Error('Incorrect email/password combination');
     }
 
     /* check user password */
     const passwordMatched = await compare(password, user.password);
     if (!passwordMatched) {
-      throw Error('Incorrect email/password combination');
+      throw new Error('Incorrect email/password combination');
     }
 
     const { secrete, expiresIn } = authConfig.jwt;

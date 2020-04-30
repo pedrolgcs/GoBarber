@@ -17,7 +17,7 @@ class CreateUserService {
       where: { email },
     });
     if (checkUserExists) {
-      throw Error('Email adrress already used');
+      throw new Error('Email adrress already used');
     }
 
     const hashedPassword = await hash(password, 8);
