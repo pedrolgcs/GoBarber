@@ -4,6 +4,8 @@ import { getRepository } from 'typeorm';
 
 import User from '../models/User';
 import CreateUserService from '../services/CreateUserService';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
+
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 import uploadConfig from '../config/upload';
@@ -43,8 +45,20 @@ userRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (req, res) => {
-    console.log(req.file);
-    return res.status(200).json({ message: 'Patch Aavatar' });
+    try {
+      const updateUserAvatar = new UpdateUserAvatarService();
+
+      const user = await updateUserAvatar.execute({
+        user_id: req.user.id,
+        avatarFilename: req.file.filename,
+      });
+
+      delete user.password;
+
+      return res.status(200).json(user);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
   },
 );
 
