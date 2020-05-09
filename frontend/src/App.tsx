@@ -1,11 +1,16 @@
 import React from 'react';
 
-// import { Container } from './styles';
+// Styles
+import GlobalStyle from './styles/global';
+
+// Routes
+import SignIn from './pages/SignIn';
 
 const App: React.FC = () => {
   return (
     <>
-      <h1>Hello GoBarber</h1>
+      <SignIn />
+      <GlobalStyle />
     </>
   );
 };
