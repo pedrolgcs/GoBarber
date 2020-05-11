@@ -5,12 +5,12 @@ import GlobalStyle from './styles/global';
 
 // Routes
 import SignIn from './pages/SignIn';
-import SignUp from './pages/Signup';
+// import SignUp from './pages/Signup';
 
 const App: React.FC = () => {
   return (
     <>
-      <SignUp />
+      <SignIn />
       <GlobalStyle />
     </>
   );
