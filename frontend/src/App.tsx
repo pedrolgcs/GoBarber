@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Context
+// Contexts
 import AppProvider from './hooks';
 
 // Styles
