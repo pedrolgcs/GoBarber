@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 // Contexts
 import AppProvider from './hooks';
@@ -7,17 +8,16 @@ import AppProvider from './hooks';
 import GlobalStyle from './styles/global';
 
 // Routes
-import SignIn from './pages/SignIn';
-// import SignUp from './pages/Signup';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <AppProvider>
-        <SignIn />
+        <Routes />
       </AppProvider>
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   );
 };
 
