@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import Tolltip from '../Tooltip';
+import Tooltip from '../Tooltip';
 
 interface ContainerProps {
   isErrored: boolean;
@@ -59,7 +59,7 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const Error = styled(Tolltip)`
+export const Error = styled(Tooltip)`
   height: 20px;
   margin-left: 16px;
   svg {
