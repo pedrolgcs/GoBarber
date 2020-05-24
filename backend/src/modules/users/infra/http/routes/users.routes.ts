@@ -1,28 +1,25 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { getRepository } from 'typeorm';
+import { container } from 'tsyringe';
 
-import User from '@modules/users/infra/typeorm/entities/User';
+import uploadConfig from '@config/upload';
+
+// Services
 import CreateUserService from '@modules/users/services/CreateUserService';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 
-import uploadConfig from '@config/upload';
+// Middlewares
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
+// Inicialize
 const userRouter = Router();
 
 const upload = multer(uploadConfig);
 
-userRouter.get('/', async (req, res) => {
-  const usersRepository = getRepository(User);
-  const users = await usersRepository.find();
-  return res.status(200).json(users);
-});
-
 userRouter.post('/', async (req, res) => {
   const { name, email, password } = req.body;
 
-  const createUser = new CreateUserService();
+  const createUser = container.resolve(CreateUserService);
 
   const user = await createUser.execute({ name, email, password });
 
@@ -36,7 +33,7 @@ userRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (req, res) => {
-    const updateUserAvatar = new UpdateUserAvatarService();
+    const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
     const user = await updateUserAvatar.execute({
       user_id: req.user.id,
