@@ -1,6 +1,10 @@
 import { container } from 'tsyringe';
 
+// Users providers
 import '@modules/users/providers';
+
+// Providers global
+import './providers';
 
 // Appointmens
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
