@@ -64,5 +64,3 @@ class ListProviderDayAvailabilityService {
 }
 
 export default ListProviderDayAvailabilityService;
-
-// 5:45
