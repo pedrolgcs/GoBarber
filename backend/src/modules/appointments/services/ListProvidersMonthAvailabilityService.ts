@@ -43,9 +43,9 @@ class ListProvidersMonthAvailabilityService {
     );
 
     const availability = eachDayArray.map(day => {
-      const appointmentsInDay = appointments.filter(appointment => {
-        return getDate(appointment.date) === day;
-      });
+      const appointmentsInDay = appointments.filter(
+        appointment => getDate(appointment.date) === day,
+      );
 
       return {
         day,
