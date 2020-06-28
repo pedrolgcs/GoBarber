@@ -17,12 +17,18 @@ interface IRequest {
 
 @injectable()
 class CreateUserService {
+  private usersRepository: IUsersRepository;
+  private hashProvider: IHashProvider;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    usersRepository: IUsersRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
-  ) {}
+    hashProvider: IHashProvider,
+  ) {
+    this.usersRepository = usersRepository;
+    this.hashProvider = hashProvider;
+  }
 
   public async execute({ name, email, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);

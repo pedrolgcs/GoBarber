@@ -18,10 +18,14 @@ interface IRequest {
 
 @injectable()
 class CreateAppointmentService {
+  private appointmentsRepository: IAppointmentsRepository;
+
   constructor(
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository,
-  ) {}
+    appointmentsRepository: IAppointmentsRepository,
+  ) {
+    this.appointmentsRepository = appointmentsRepository;
+  }
 
   public async execute({
     user_id,

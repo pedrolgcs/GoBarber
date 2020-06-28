@@ -14,10 +14,14 @@ interface IRequest {
 
 @injectable()
 class ShowProfileService {
+  private usersRepository: IUsersRepository;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {}
+    usersRepository: IUsersRepository,
+  ) {
+    this.usersRepository = usersRepository;
+  }
 
   public async execute({ user_id }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);

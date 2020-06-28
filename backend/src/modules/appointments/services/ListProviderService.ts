@@ -12,10 +12,14 @@ interface IRequest {
 
 @injectable()
 class ListProviderService {
+  private usersRepository: IUsersRepository;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {}
+    usersRepository: IUsersRepository,
+  ) {
+    this.usersRepository = usersRepository;
+  }
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
     const users = await this.usersRepository.findAllProviders({

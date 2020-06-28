@@ -18,14 +18,22 @@ interface IRequest {
 
 @injectable()
 class SendForgotPasswordEmailService {
+  private usersRepository: IUsersRepository;
+  private mailProvider: IMailProvider;
+  private userTokensRepository: IUserTokensRepository;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    usersRepository: IUsersRepository,
     @inject('MailProvider')
-    private mailProvider: IMailProvider,
+    mailProvider: IMailProvider,
     @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository,
-  ) {}
+    userTokensRepository: IUserTokensRepository,
+  ) {
+    this.usersRepository = usersRepository;
+    this.mailProvider = mailProvider;
+    this.userTokensRepository = userTokensRepository;
+  }
 
   public async execute({ email }: IRequest): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);

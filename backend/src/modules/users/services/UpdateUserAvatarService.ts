@@ -16,13 +16,19 @@ interface IRequest {
 
 @injectable()
 class UpdateUserAvatarService {
+  private usersRepository: IUsersRepository;
+  private storageProvider: IStorageProvider;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    usersRepository: IUsersRepository,
 
     @inject('StorageProvider')
-    private storageProvider: IStorageProvider,
-  ) {}
+    storageProvider: IStorageProvider,
+  ) {
+    this.usersRepository = usersRepository;
+    this.storageProvider = storageProvider;
+  }
 
   public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);

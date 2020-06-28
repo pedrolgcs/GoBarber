@@ -17,10 +17,14 @@ type IResponse = Array<{
 
 @injectable()
 class ListProvidersMonthAvailabilityService {
+  private appointmentsRepository: IAppointmentsRepository;
+
   constructor(
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository,
-  ) {}
+    appointmentsRepository: IAppointmentsRepository,
+  ) {
+    this.appointmentsRepository = appointmentsRepository;
+  }
 
   public async execute({
     provider_id,

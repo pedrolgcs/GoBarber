@@ -23,13 +23,18 @@ interface IResponse {
 
 @injectable()
 class AuthenticateUserService {
+  private usersRepository: IUsersRepository;
+  private hashProvider: IHashProvider;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-
+    usersRepository: IUsersRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
-  ) {}
+    hashProvider: IHashProvider,
+  ) {
+    this.usersRepository = usersRepository;
+    this.hashProvider = hashProvider;
+  }
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);

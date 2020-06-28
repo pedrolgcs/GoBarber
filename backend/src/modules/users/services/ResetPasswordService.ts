@@ -16,16 +16,22 @@ interface IRequest {
 
 @injectable()
 class ResetPasswordService {
+  private usersRepository: IUsersRepository;
+  private userTokensRepository: IUserTokensRepository;
+  private hashProvider: IHashProvider;
+
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-
+    usersRepository: IUsersRepository,
     @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository,
-
+    userTokensRepository: IUserTokensRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
-  ) {}
+    hashProvider: IHashProvider,
+  ) {
+    this.usersRepository = usersRepository;
+    this.userTokensRepository = userTokensRepository;
+    this.hashProvider = hashProvider;
+  }
 
   public async execute({ token, password }: IRequest): Promise<void> {
     const userToken = await this.userTokensRepository.findByToken(token);
