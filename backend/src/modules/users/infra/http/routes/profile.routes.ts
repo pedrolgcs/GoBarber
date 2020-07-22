@@ -3,7 +3,7 @@ import { Router } from 'express';
 // Controllers
 import ProfileController from '../controllers/ProfileController';
 
-// Middlewares
+// Middleware
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 // Inicialize

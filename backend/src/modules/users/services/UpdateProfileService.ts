@@ -51,8 +51,8 @@ class UpdateProfileService {
       throw new AppError('E-mail already in use');
     }
 
-    user.name = name || user.name;
-    user.email = email || user.email;
+    user.name = name;
+    user.email = email;
 
     if (password && !old_password) {
       throw new AppError(

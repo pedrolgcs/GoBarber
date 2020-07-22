@@ -7,7 +7,7 @@ import uploadConfig from '@config/upload';
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
 
-// Middlewares
+// Middleware
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 // Inicialize

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+// service
 import ResetPasswordService from '@modules/users/services/ResetPasswordService';
 
 class ResetPasswordController {

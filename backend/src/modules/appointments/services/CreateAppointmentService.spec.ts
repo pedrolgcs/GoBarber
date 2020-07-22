@@ -7,14 +7,14 @@ import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRe
 // Services
 import CreateAppointmentService from './CreateAppointmentService';
 
-let fakeappointmentsRepository: FakeAppointmentsRepository;
+let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let createAppointment: CreateAppointmentService;
 
 describe('CreateAppointment', () => {
   beforeEach(() => {
-    fakeappointmentsRepository = new FakeAppointmentsRepository();
+    fakeAppointmentsRepository = new FakeAppointmentsRepository();
     createAppointment = new CreateAppointmentService(
-      fakeappointmentsRepository,
+      fakeAppointmentsRepository,
     );
   });
 

@@ -6,7 +6,7 @@ import './providers';
 // Users Providers
 import '@modules/users/providers';
 
-// Appointmens Repository
+// Appointments Repository
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 

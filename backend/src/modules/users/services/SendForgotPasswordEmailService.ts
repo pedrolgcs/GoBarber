@@ -4,9 +4,6 @@ import { injectable, inject } from 'tsyringe';
 // Shared
 import AppError from '@shared/errors/AppError';
 
-// Entities
-// import User from '@modules/users/infra/typeorm/entities/User';
-
 // Interfaces
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -25,14 +22,14 @@ class SendForgotPasswordEmailService {
   constructor(
     @inject('UsersRepository')
     usersRepository: IUsersRepository,
-    @inject('MailProvider')
-    mailProvider: IMailProvider,
     @inject('UserTokensRepository')
     userTokensRepository: IUserTokensRepository,
+    @inject('MailProvider')
+    mailProvider: IMailProvider,
   ) {
     this.usersRepository = usersRepository;
-    this.mailProvider = mailProvider;
     this.userTokensRepository = userTokensRepository;
+    this.mailProvider = mailProvider;
   }
 
   public async execute({ email }: IRequest): Promise<void> {
@@ -43,6 +40,7 @@ class SendForgotPasswordEmailService {
     }
 
     const { token } = await this.userTokensRepository.generate(user.id);
+
     const forgotPasswordTemplate = path.resolve(
       __dirname,
       '..',
