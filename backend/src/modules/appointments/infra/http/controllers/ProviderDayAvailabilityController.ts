@@ -9,11 +9,11 @@ class ProviderDayAvailabilityController {
     const { provider_id } = request.params;
     const { year, month, day } = request.body;
 
-    const listProvidersDayhAvailability = container.resolve(
+    const listProvidersDayAvailability = container.resolve(
       ProviderDayAvailabilityService,
     );
 
-    const availability = await listProvidersDayhAvailability.execute({
+    const availability = await listProvidersDayAvailability.execute({
       provider_id,
       year,
       month,

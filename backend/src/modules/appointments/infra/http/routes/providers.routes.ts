@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-// Middlewares
+// Middleware
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 // Controllers
