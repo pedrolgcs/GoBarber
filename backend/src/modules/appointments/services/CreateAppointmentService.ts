@@ -5,7 +5,6 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 // Interfaces
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 // Entities
@@ -20,16 +19,12 @@ interface IRequest {
 @injectable()
 class CreateAppointmentService {
   private appointmentsRepository: IAppointmentsRepository;
-  private usersRepository: IUsersRepository;
 
   constructor(
     @inject('AppointmentsRepository')
     appointmentsRepository: IAppointmentsRepository,
-    @inject('UsersRepository')
-    usersRepository: IUsersRepository,
   ) {
     this.appointmentsRepository = appointmentsRepository;
-    this.usersRepository = usersRepository;
   }
 
   public async execute({
@@ -51,14 +46,6 @@ class CreateAppointmentService {
       throw new AppError(
         'You can only create appointments between 8am and 5pm',
       );
-    }
-
-    const checkProviderExists = await this.usersRepository.findById(
-      provider_id,
-    );
-
-    if (!checkProviderExists) {
-      throw new AppError('Provider does not exist');
     }
 
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
