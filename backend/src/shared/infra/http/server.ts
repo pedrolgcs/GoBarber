@@ -38,4 +38,3 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
 });
 
 app.listen(3333, () => console.log('🚀 => server running in: localhost:3333'));
-
