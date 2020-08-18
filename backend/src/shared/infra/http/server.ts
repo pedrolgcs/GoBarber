@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import 'express-async-errors';
 
 import express, { json, Request, Response, NextFunction } from 'express';
@@ -47,4 +48,6 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
 });
 
 // run
-app.listen(3333, () => console.log('🚀 => server running in: localhost:3333'));
+app.listen(process.env.PORT, () =>
+  console.log(`🚀 => server running in: localhost:${process.env.PORT}`),
+);
