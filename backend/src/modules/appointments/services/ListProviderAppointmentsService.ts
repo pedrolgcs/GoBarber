@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 // entities
 import Appointment from '../infra/typeorm/entities/Appointment';
@@ -33,7 +34,7 @@ class ListProviderAppointmentsService {
     const appointments = await this.appointmentsRepository.findAllInDayFromProvider(
       { provider_id, day, month, year },
     );
-    return appointments;
+    return classToClass(appointments);
   }
 }
 
