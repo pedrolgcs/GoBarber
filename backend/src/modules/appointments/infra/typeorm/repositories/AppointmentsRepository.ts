@@ -31,6 +31,8 @@ class AppointmentsRepository implements IAppointmentsRepository {
 
     await this.ormRepository.save(appointment);
 
+    await appointment.user;
+
     return appointment;
   }
 

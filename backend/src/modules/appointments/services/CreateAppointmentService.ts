@@ -1,5 +1,6 @@
 import { startOfHour, isBefore, getHours, format } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 // @shared
 import AppError from '@shared/errors/AppError';
@@ -89,7 +90,7 @@ class CreateAppointmentService {
       )}`,
     );
 
-    return appointment;
+    return classToClass(appointment);
   }
 }
 
