@@ -6,3 +6,6 @@ import './MailProvider';
 
 // Disk storage
 import './StorageProvider';
+
+// cache
+import './CacheProvider';
