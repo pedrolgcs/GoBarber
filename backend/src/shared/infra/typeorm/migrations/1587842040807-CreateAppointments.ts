@@ -57,6 +57,7 @@ export default class CreateAppointments1587842040807
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('appointments', 'AppointmentProvider');
     await queryRunner.dropTable('appointments');
   }
 }
